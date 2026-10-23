@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 import kagglehub
 import numpy as np
 import tensorflow as tf
@@ -86,7 +87,7 @@ def split_dataset(image_paths , labels):
     return X_train , X_val , X_test , y_train , y_val , y_test
 
 def preprocess_image(image_path , label):
-    image = tf.io.reaf_file(image_path)
+    image = tf.io.read_file(image_path)
     image = tf.io.decode_image(
         image,
         channels = 3,
@@ -119,4 +120,4 @@ def create_dataset(image_paths , labels , training=False):
     dataset = dataset.batch(BATCH_SIZE)
     dataset = dataset.prefetch(tf.data.AUTOTUNE)
 
-    return datase
+    return dataset
