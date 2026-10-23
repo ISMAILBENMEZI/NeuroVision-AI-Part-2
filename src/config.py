@@ -38,3 +38,8 @@ SUPPORTED_EXTENSIONS = {
     ".png",
     ".bmp",
 }
+
+MLFLOW_EXPERIMENT_NAME = "NeuroVision-MobileNetV2"
+MLFLOW_DB_PATH = PROJECT_ROOT / "mlflow.db"
+MLFLOW_TRACKING_URI = "http://127.0.0.1:5000"
+MLFLOW_ARTIFACTS_DIR = PROJECT_ROOT / "mlartifacts"

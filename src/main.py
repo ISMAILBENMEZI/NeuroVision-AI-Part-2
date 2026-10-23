@@ -1,3 +1,5 @@
+import mlflow
+
 from src.preprocessing import (
     load_dataset,
     load_images,
@@ -9,6 +11,7 @@ from src.model_training import (
     build_model,
     train_transfer_learning,
     train_fine_tuning,
+    setup_mlflow,
 )
 
 from src.evaluation import (
@@ -18,6 +21,8 @@ from src.evaluation import (
 
 
 def main():
+    setup_mlflow()
+
     data_path = load_dataset()
 
     image_paths, labels = load_images(data_path)
@@ -44,8 +49,9 @@ def main():
         val_dataset,
     )
 
-    evaluate_model(model, test_dataset)
-    get_classification_report(model, test_dataset)
+    with mlflow.start_run(run_name="Final-Evaluation"):
+        evaluate_model(model, test_dataset)
+        get_classification_report(model, test_dataset)
 
 
 if __name__ == "__main__":
