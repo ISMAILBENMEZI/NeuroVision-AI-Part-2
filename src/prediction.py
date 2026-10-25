@@ -1,4 +1,3 @@
-
 import numpy as np
 import tensorflow as tf
 
@@ -16,10 +15,10 @@ def load_prediction_model():
 
 
 def preprocess_image(image_file):
-    image = tf.io.read_file(str(image_file))
+    image_bytes = image_file.getvalue()
 
     image = tf.io.decode_image(
-        image,
+        image_bytes,
         channels=3,
         expand_animations=False,
     )
